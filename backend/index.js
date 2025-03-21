@@ -4,31 +4,19 @@ import mongoose from "mongoose";
 import booksRoute from './routes/booksRoute.js'
 import cors from 'cors';
 
-
-
-
 const app = express();
 //Need to create http route using express 
 app.use(express.json());
 
-// way 1 of using cors
-
-app.use(cors());
-
-
-  
-// way 2 of using cors 
-
-/*app.use(
+// CORS configuration
+app.use(
     cors({
         origin:'http://localhost:5173',
         methods:['GET', 'POST', 'PUT','DELETE'],
-        allowedHeaders:[ ' Content-Type '],
+        allowedHeaders:['Content-Type'],
     })
-    
 );
 
-*/
 /*
 app.post('/books', async (request, response) => {
     try {
@@ -67,18 +55,19 @@ return response.status(234).send('Welcome to Mern Stack Tutorial')
 
 app.use('/books', booksRoute);
 
+console.log('Attempting to connect to MongoDB...');
+console.log('Connection URL:', mongoDBURL);
 
 mongoose
 .connect(mongoDBURL)
 .then(() => {
-    console.log('App connected to database');
+    console.log('Successfully connected to MongoDB database');
     app.listen(PORT, () => {  // call back function
-        console.log(`hello : ${PORT}`);
-
-});
+        console.log(`Server is running on port: ${PORT}`);
+    });
 })
 .catch((error) =>{
-    console.log(error);
-
+    console.error('MongoDB connection error:', error.message);
+    console.error('Full error:', error);
 });
 

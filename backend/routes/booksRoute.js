@@ -32,9 +32,9 @@ router.post('/', async (request , response ) => {
 
 });
 
-// route for get all books from database 
+// route for get all books from database
 
-router.get('/' ,async (request,response) =>{
+router.get('/' ,async (request,response) => {
 try{
     const books = await Book.find({});
     return response.status(200).json({
@@ -49,11 +49,11 @@ try{
 
 }});
 
-// route for get one books from database 
-
+// route for get one books from databases 
 router.get('/:id' ,async (request,response) =>{
     try{
         const { id } = request.params;
+
 
          
         const book = await Book.findById(id);
@@ -109,9 +109,10 @@ router.delete('/:id',async(request, response)=>{
     }catch(error){
         console.log(error.message);
         response.status(500).send({ message: error.message});
-        
-
+               
     }
 });
 
-export default router ;
+export default router; 
+
+

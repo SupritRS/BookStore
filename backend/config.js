@@ -1,3 +1,3 @@
 export const PORT = 5555;
 
-export const mongoDBURL = `mongodb+srv://suprit21234:theforbes21234@cluster0.n16it.mongodb.net/books-collection?retryWrites=true&w=majority&appName=Cluster0` 
+export const mongoDBURL = `mongodb+srv://BookStore:theforbes21234@bookcluster.fxlec.mongodb.net/?retryWrites=true&w=majority&appName=Bookcluster`

@@ -28,7 +28,7 @@ const EditBook= () => {
 
     }).catch((error) =>{
         setLoading(false);
-        alert('An error happened . Please check console')
+        enqueueSnackbar('Error fetching book details', { variant: 'error' });
         console.log(error);
     });
   },[])
@@ -43,13 +43,13 @@ const EditBook= () => {
     axios.put(`http://localhost:5555/books/${id}`, data)
     .then(() => {
       setLoading(false);
+      enqueueSnackbar('Book updated successfully', { variant: 'success' });
       navigate('/');
     })
     .catch((error) => {
       setLoading(false);
-      alert('An error happened. Please check console');
+      enqueueSnackbar('Error updating book', { variant: 'error' });
       console.log(error)
-
     });
 
   };
