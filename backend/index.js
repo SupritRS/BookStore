@@ -8,12 +8,12 @@ const app = express();
 //Need to create http route using express 
 app.use(express.json());
 
-// CORS configuration
+// CORS configuration to allow both localhost and IP address
 app.use(
     cors({
-        origin:'http://localhost:5173',
-        methods:['GET', 'POST', 'PUT','DELETE'],
-        allowedHeaders:['Content-Type'],
+        origin: ['http://localhost:5173', 'http://51.20.183.228:5173'],  // Allow both origins
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        allowedHeaders: ['Content-Type'],
     })
 );
 
@@ -49,8 +49,8 @@ app.post('/books', async (request, response) => {
 );
 */
 app.get('/',(request , response) => {  //() => {} is a call back function used to handle the request 
-console.log(request)
-return response.status(234).send('Welcome to Mern Stack Tutorial')
+    console.log('Root endpoint hit');
+    return response.status(234).send('Welcome to Mern Stack Tutorial')
 });
 
 app.use('/books', booksRoute);
@@ -62,8 +62,8 @@ mongoose
 .connect(mongoDBURL)
 .then(() => {
     console.log('Successfully connected to MongoDB database');
-    app.listen(PORT, () => {  // call back function
-        console.log(`Server is running on port: ${PORT}`);
+    app.listen(PORT, '0.0.0.0', () => {  // Using 0.0.0.0 to listen on all interfaces
+        console.log(`Server is running on http://51.20.183.228:${PORT}`);
     });
 })
 .catch((error) =>{
